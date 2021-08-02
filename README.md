@@ -10,17 +10,23 @@
 
 
 
-    @article{yin2020center,
+    @article{yin2021center,
       title={Center-based 3D Object Detection and Tracking},
       author={Yin, Tianwei and Zhou, Xingyi and Kr{\"a}henb{\"u}hl, Philipp},
-      journal={arXiv:2006.11275},
-      year={2020},
+      journal={CVPR},
+      year={2021},
     }
 
 
 ## NEWS
 
-[2021-01-06] CenterPoint v1.0 is released. Without bells and whistles, we rank first among all Lidar-only methods on Waymo Open Dataset with a single model that runs at 11 FPS. Check out CenterPoint's model zoo for [Waymo](configs/waymo/README.md) and [nuScenes](configs/nusc/README.md). 
+[2021-06-20] The real time version of CenterPoint ranked 2nd in the Waymo Real-time 3D detection challenge (72.8 mAPH / 57.1 ms). The corresponding techical report is available at [URL](https://drive.google.com/file/d/1wG1zPc2PyWgBIC-dLSFbxzeZ3FhA708_/view). Please stay tuned for the updates. 
+
+[2021-04-13] Better nuScenes results by fixing sync-bn bug and using stronger augmentations. Plese refer to [nuScenes](configs/nusc/README.md).  
+
+[2021-02-28] CenterPoint is accepted at CVPR 2021 :fire:
+
+[2021-01-06] CenterPoint v0.1 is released. Without bells and whistles, we rank first among all Lidar-only methods on Waymo Open Dataset with a single model that runs at 11 FPS. Check out CenterPoint's model zoo for [Waymo](configs/waymo/README.md) and [nuScenes](configs/nusc/README.md). 
 
 [2020-12-11] 3 out of the top 4 entries in the recent NeurIPS 2020 [nuScenes 3D Detection challenge](https://www.nuscenes.org/object-detection?externalData=all&mapData=all&modalities=Any) used CenterPoint. Congratualations to other participants and please stay tuned for more updates on nuScenes and Waymo soon. 
 
@@ -83,6 +89,8 @@ All results are tested on a Titan RTX GPU with batch size 1.
 
 ## Third-party resources
 
+- [ONCE_Benchmark](https://github.com/PointsCoder/ONCE_Benchmark): Implementation of CenterPoint on the ONCE dataset 
+- [CenterPoint-KITTI](https://github.com/tianweiy/CenterPoint-KITTI): Reimplementation of CenterPoint on the KITTI dataset 
 - [AFDet](https://arxiv.org/abs/2006.12671): another work inspired by CenterNet achieves good performance on KITTI/Waymo dataset. 
 - [mmdetection3d](https://github.com/open-mmlab/mmdetection3d/tree/master/configs/centerpoint): CenterPoint in mmdet framework. 
 
@@ -92,17 +100,18 @@ All results are tested on a Titan RTX GPU with batch size 1.
 
 Please refer to [INSTALL](docs/INSTALL.md) to set up libraries needed for distributed training and sparse convolution.
 
-First download the model (By default, [centerpoint_pillar_512](https://drive.google.com/drive/folders/1K_wHrBo6yRSG7H7UUjKI4rPnyEA8HvOp)) and put it in ```work_dirs/centerpoint_pillar_512_demo```. 
+### Benchmark Evaluation and Training 
 
-We provide a driving sequence clip from the [nuScenes dataset](https://www.nuscenes.org). Donwload the [folder](https://drive.google.com/file/d/1bK-xeq5UwJzpPfVDhICDJeKiU1QVZwtI/view?usp=sharing) and put in the main directory.     
-Then run a demo by ```python tools/demo.py```. If setup corectly, you will see an output video like (red is gt objects, blue is the prediction): 
+Please refer to [GETTING_START](docs/GETTING_START.md) to prepare the data. Then follow the instruction there to reproduce our detection and tracking results. All detection configurations are included in [configs](configs).
 
-<p align="center"> <img src='docs/demo.gif' align="center" height="350px"> </p> 
+### Develop
 
-## Benchmark Evaluation and Training 
+If you are interested in training CenterPoint on a new dataset, use CenterPoint in a new task, or use a new network architecture for CenterPoint, please refer to [DEVELOP](docs/DEVELOP.md). Feel free to send us an email for discussions or suggestions. 
 
-Please refer to [GETTING_START](docs/GETTING_START.md) to prepare the data. Then follow the instruction there to reproduce our detection and tracking results. All detection configurations are included in [configs](configs) and we provide the scripts for all tracking experiments in [tracking_scripts](tracking_scripts). 
-
+### ToDo List
+- [ ] Support visualization with Open3D  
+- [ ] Colab demo 
+- [ ] Docker   
 
 ## License
 
